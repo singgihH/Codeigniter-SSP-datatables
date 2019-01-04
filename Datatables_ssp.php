@@ -32,28 +32,6 @@ class Datatables_ssp
      *  @param  array $data    Data from the SQL get
      *  @return array          Formatted data in a row based format
      */
-    static function data_output_old($columns, $data)
-    {
-        $out = array();
-
-        for ($i = 0, $ien = count($data); $i < $ien; $i++) {
-            $row = array();
-
-            for ($j = 0, $jen = count($columns); $j < $jen; $j++) {
-                $column = $columns[$j];
-                // Is there a formatter?
-                if (isset($column['formatter'])) {
-                    $row[$column['dt']] = $column['formatter']($data[$i][$column['db']], $data[$i]);
-                } else {
-                    $row[$column['db']] = $data[$i][$column['db']];
-                }
-            }
-
-            $out[] = $row;
-        }
-        return $out;
-    }
-
     static function data_output ( $columns, $data, $isJoin = false )
     {
         $out = array();
