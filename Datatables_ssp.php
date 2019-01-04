@@ -157,27 +157,6 @@ class Datatables_ssp
      *    sql_exec() function
      *  @return string SQL where clause
      */
-    static function filter_old($request, $columns, &$bindings)
-    {
-        $globalSearch = array();
-        $columnSearch = array();
-        $dtColumns = self::pluck($columns, 'dt');
-
-        if (isset($request['search']) && $request['search']['value'] != '') {
-            $str = $request['search']['value'];
-
-            for ($i = 0, $ien = count($request['columns']); $i < $ien; $i++) {
-                $requestColumn = $request['columns'][$i];
-                $columnIdx = array_search($requestColumn['data'], $dtColumns);
-                $column = $columns[$columnIdx];
-
-                if ($requestColumn['searchable'] == 'true') {
-                    $binding = self::bind($bindings, '%' . $str . '%', PDO::PARAM_STR);
-                    $globalSearch[] = "`" . $column['db'] . "` LIKE " . $binding;
-                }
-            }
-        }
-
         // Individual column filtering
         $request_columns = isset($request['columns']) ? $request['columns'] : array();
         for ($i = 0, $ien = count($request_columns); $i < $ien; $i++) {
