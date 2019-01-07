@@ -6,7 +6,9 @@ Follow the instruction before you use the library. This library reference https:
 we only change a little code, so we can use the codeigniter database. 
 
 ## Installing
-Download Library Codeigniter SSP datatables
+Download Library Codeigniter SSP datatable, put on library folder.
+
+function to call ajax from client :
 
 ```php
 public function yourfunctioncallajax()
@@ -23,14 +25,15 @@ public function yourfunctioncallajax()
       array( 'db' => 'item_total', 'dt' => 3 )
   );
 
+  // $conn use by default if you naming another select your active connection
   if (isset($_POST['start'])) 
   {
     echo json_encode(
-        Datatables_ssp::simple( $_POST, $table, $primaryKey, $columns )
+        Datatables_ssp::simple( $_POST, $table, $primaryKey, $columns, $conn )
     );
   }else{
     echo json_encode(
-        Datatables_ssp::simple( $_GET, $table, $primaryKey, $columns )
+        Datatables_ssp::simple( $_GET, $table, $primaryKey, $columns, $conn )
     );
   }
 }
