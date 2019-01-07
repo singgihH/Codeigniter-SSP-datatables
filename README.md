@@ -1,6 +1,11 @@
 # Codeigniter-SSP-datatables
 library for SSP datatables serverside
-Example call :
+
+##Getting Started
+Follow the instruction before you use the library. This library reference https://datatables.net/manual/server-side
+
+##Installing
+Download Library Codeigniter SSP datatables
 
 public function yourfunctioncallajax()
 {
