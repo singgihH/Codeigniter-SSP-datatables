@@ -11,7 +11,7 @@ Download Library Codeigniter SSP datatable, put on library folder.
 function to call ajax from client :
 
 ```php
-public function yourfunctioncallajax()
+function yourfunctioncallajax()
 {
   $this->load->library('Datatables_ssp');
   $primaryKey = 'thisyourprimarykey';
