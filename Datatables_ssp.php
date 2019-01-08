@@ -157,41 +157,7 @@ class Datatables_ssp
      *    sql_exec() function
      *  @return string SQL where clause
      */
-        // Individual column filtering
-        $request_columns = isset($request['columns']) ? $request['columns'] : array();
-        for ($i = 0, $ien = count($request_columns); $i < $ien; $i++) {
-            $requestColumn = $request_columns[$i];
-            $columnIdx = array_search($requestColumn['data'], $dtColumns);
-            $column = $columns[$columnIdx];
-
-            $str = $requestColumn['search']['value'];
-
-            if ($requestColumn['searchable'] == 'true' &&
-                    $str != '') {
-                $binding = self::bind($bindings, '%' . $str . '%', PDO::PARAM_STR);
-                $columnSearch[] = "`" . $column['db'] . "` LIKE bali" . $binding;
-            }
-        }
-
-        // Combine the filters into a single string
-        $where = '';
-
-        if (count($globalSearch)) {
-            $where = '(' . implode(' OR ', $globalSearch) . ')';
-        }
-
-        if (count($columnSearch)) {
-            $where = $where === '' ?
-                    implode(' AND ', $columnSearch) :
-                    $where . ' AND ' . implode(' AND ', $columnSearch);
-        }
-
-        if ($where !== '') {
-            $where = 'WHERE ' . $where;
-        }
-
-        return $where;
-    }
+        // Individual column filtering    
 
     static function filter($request, $columns, &$bindings)
     {
